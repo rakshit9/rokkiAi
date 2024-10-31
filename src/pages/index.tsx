@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { type CoreMessage } from "ai";
-import { readStreamableValue } from 'ai/rsc';
 import { getAnswer } from "@/app/action";
 import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
@@ -36,10 +35,6 @@ export default function Home() {
 
     try {
       const result = await getAnswer(inputValue);
-  
-      console.log(result)
-      // for await (const content of readStreamableValue(result)) {
-      //   console.log(content, 'content')
         let accumulatedContent = '';
         for await (const content of result.textStream) {
           accumulatedContent += content;
@@ -51,14 +46,6 @@ export default function Home() {
             },
           ]);
         }
-
-
-
-
-      // setMessages([
-      //   ...newMessages,
-      //   { role: "assistant", content: result.text }
-      // ]);
     } catch (error) {
       console.error("Error getting answer:", error);
     }
@@ -68,7 +55,7 @@ export default function Home() {
   const themeClasses = {
     main: isDark ? "bg-gray-900" : "bg-white",
     nav: isDark ? "bg-gray-800 border-gray-700" : "bg-white border-gray-200",
-    logo: isDark 
+    logo: isDark
       ? "text-white hover:text-gray-300"
       : "bg-gradient-to-r from-gray-900 via-gray-700 to-gray-800 bg-clip-text text-transparent hover:from-gray-800 hover:via-gray-600 hover:to-gray-700",
     button: isDark
@@ -81,12 +68,12 @@ export default function Home() {
 
   return (
     <div className={`min-h-screen ${themeClasses.main} transition-colors duration-200`}>
-      <NavBar 
+      <NavBar
         isDark={isDark}
         themeClasses={themeClasses}
         setTheme={setTheme}
       />
-      
+
       <main className={`text-gray-900 dark:text-white ${themeClasses.main} transition-colors duration-200`}>
         <div>
           <MessageBody messages={messages}   isDark={isDark}/>

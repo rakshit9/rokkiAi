@@ -34,7 +34,8 @@ export default function Home() {
     setInputValue("");
 
     try {
-      const result = await getAnswer(inputValue);
+      const apiKey = localStorage.getItem("openai_api_key") ?? "";
+      const result = await getAnswer(inputValue, apiKey);
         let accumulatedContent = '';
         for await (const content of result.textStream) {
           accumulatedContent += content;

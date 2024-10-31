@@ -84,7 +84,7 @@ export default function Home() {
               <input
                 type="text"
                 placeholder="Type here..."
-                className={`w-[40%] md:w-[50%] lg:w-[60%] mx-auto block rounded-xl border-2 shadow-lg p-5 ${themeClasses.input} outline-none hover:shadow-xl mb-[7vh]`}
+                className={`w-[90%] sm:w-[70%] md:w-[60%] lg:w-[50%] mx-auto block rounded-xl border-2 shadow-lg p-3 ${themeClasses.input} outline-none hover:shadow-xl mb-[7vh]`}
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
               />

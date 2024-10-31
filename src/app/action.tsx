@@ -11,13 +11,7 @@ if (!process.env.OPENAI_API_KEY) {
 }
 
 export async function getAnswer(question: string) {
-  console.log(question,"question");
-  // const { text, finishReason, usage } = await generateText({
-  //   model: openai('gpt-3.5-turbo'),
-  //   prompt: question,
-  // });
-
-
+ 
   const { textStream } = await streamText({
     model: openai('gpt-3.5-turbo'),
     prompt: question,
